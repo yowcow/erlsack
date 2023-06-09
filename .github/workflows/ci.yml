@@ -14,4 +14,4 @@ jobs:
         with:
           otp-version: ${{matrix.otp}}
           rebar3-version: ${{matrix.rebar3}}
-      - run: rebar3 do eunit,et,dialyzer
+      - run: rebar3 do eunit,ct,dialyzer
