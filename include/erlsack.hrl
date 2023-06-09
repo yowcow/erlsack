@@ -1,6 +1,6 @@
 -record(erlsack_item, {
-          value :: pos_integer(),
-          weight :: pos_integer(),
+          value :: number(),
+          weight :: non_neg_integer(),
           item :: term()
          }).
 

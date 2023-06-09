@@ -7,9 +7,9 @@
 -include("include/erlsack.hrl").
 
 -spec fill(
-        Capacity :: pos_integer(),
+        Capacity :: non_neg_integer(),
         Items :: [erlsack_item()]
-       ) -> {pos_integer(), [erlsack_item()]}.
+       ) -> {number(), [erlsack_item()]}.
 fill(0, _) ->
     {0, []};
 fill(_, []) ->
@@ -28,10 +28,10 @@ fill(Capacity, Items) ->
        )).
 
 -spec fill(
-        Capacity :: pos_integer(),
+        Capacity :: non_neg_integer(),
         Items :: [erlsack_item()],
-        TotalWeight :: pos_integer()
-       ) -> {pos_integer(), [erlsack_item()]}.
+        TotalWeight :: non_neg_integer()
+       ) -> {number(), [erlsack_item()]}.
 fill(Capacity, Items, TotalWeight) when TotalWeight =< Capacity ->
     {lists:foldl(
        fun(#erlsack_item{value = V}, Acc) -> Acc + V end,
@@ -39,18 +39,17 @@ fill(Capacity, Items, TotalWeight) when TotalWeight =< Capacity ->
        Items
       ), Items};
 fill(Capacity, Items, _) ->
-    ItemCount = length(Items),
     get_sack(
-      ItemCount-1,
+      length(Items)-1,
       Capacity,
       array:from_list(Items)
      ).
 
 -spec get_sack(
-        I :: pos_integer(),
-        J :: pos_integer(),
+        I :: integer(),
+        J :: integer(),
         M :: array:array(erlsack_item())
-       ) -> {pos_integer(), [erlsack_item()]}.
+       ) -> {number(), [erlsack_item()]}.
 get_sack(I, J, _) when I < 0 orelse J =< 0 ->
     {0, []};
 get_sack(I, J, M) ->
