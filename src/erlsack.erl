@@ -39,9 +39,8 @@ fill(Capacity, Items, TotalWeight) when TotalWeight =< Capacity ->
        Items
       ), Items};
 fill(Capacity, Items, _) ->
-    ItemCount = length(Items),
     get_sack(
-      ItemCount-1,
+      length(Items)-1,
       Capacity,
       array:from_list(Items)
      ).
