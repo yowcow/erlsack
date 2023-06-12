@@ -1,7 +1,7 @@
 erlsack
 =======
 
-An OTP library to solve [knapsack problem](https://en.wikipedia.org/wiki/Knapsack_problem)
+An OTP library to solve the [knapsack problem](https://en.wikipedia.org/wiki/Knapsack_problem)
 
 Build
 -----
